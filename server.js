@@ -46,13 +46,13 @@ app.get('/allpets', async (req, res) => {
 // ADD A NEW PET
 // =========================
 app.post('/addpet', async (req, res) => {
-    const { pet_name, pet_type } = req.body;
+    const { pet_name, pet_type, pet_pic } = req.body;
 
     try {
         let connection = await mysql.createConnection(dbConfig);
         await connection.execute(
-            'INSERT INTO pets (pet_name, pet_type) VALUES (?, ?)',
-            [pet_name, pet_type]
+            'INSERT INTO pets (pet_name, pet_type, pet_pic) VALUES (?, ?, ?)',
+            [pet_name, pet_type, pet_pic],
         );
         res.status(201).json({
             message: `Pet ${pet_name} added successfully`
@@ -76,8 +76,8 @@ app.put('/updatepet/:id', async (req, res) => {
     try {
         let connection = await mysql.createConnection(dbConfig);
         await connection.execute(
-            'UPDATE pets SET pet_name = ?, pet_type = ? WHERE pet_id = ?',
-            [pet_name, pet_type, petId]
+            'UPDATE pets SET pet_name = ?, pet_type = ?, pet_pic = ? ,WHERE pet_id = ?',
+            [pet_name, pet_type, pet_pic, petId]
         );
         res.json({
             message: `Pet ID ${petId} updated successfully`

@@ -76,7 +76,7 @@ app.put('/updatepet/:id', async (req, res) => {
     try {
         let connection = await mysql.createConnection(dbConfig);
         await connection.execute(
-            'UPDATE pets SET pet_name = ?, pet_type = ?, pet_pic = ? ,WHERE pet_id = ?',
+            'UPDATE pets SET pet_name = ?, pet_type = ?, pet_pic = ? WHERE pet_id = ?',
             [pet_name, pet_type, pet_pic, petId]
         );
         res.json({

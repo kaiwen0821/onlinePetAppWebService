@@ -71,7 +71,7 @@ app.post('/addpet', async (req, res) => {
 // =========================
 app.put('/updatepet/:id', async (req, res) => {
     const petId = req.params.id;
-    const { pet_name, pet_type } = req.body;
+    const { pet_name, pet_type, pet_pic } = req.body;
 
     try {
         let connection = await mysql.createConnection(dbConfig);
